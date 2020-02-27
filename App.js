@@ -88,3 +88,44 @@ function exibeAlgo(){
 }
 setInterval(exibeAlgo,1000); // sexo vai ser executada a cada 1 segundo, não precisa do () pq ele não iria referenciar 
 setTimeout(exibeAlgo, 10000); // Só execulta uma vez, mas com um dalay 
+
+// --------------------------- Manipulando a DOM --------------------------
+//A DOM é a arvore de elementos disposto em tela, organizada pelo html
+function mostrarAlerta(){
+    alert('Botão foi clicado !');
+}
+
+
+//Referenciando elementos da DOM através do js 
+
+var inputElement = document.getElementById('name') ;//Armazeno uma referência para o input na DOm pelo id
+//inputElement = document.getElementsByTagName('input'); // Retorna um vetor de referências 
+//inputElement = document.getElementsByTagName('input')[0]; // Retorna o primeiro input
+//posso retornar por uma classe que tbm vai ser um vetor 
+//inputElement = document.querySelector('body div#app input'); // Referencio o local exato que o elemento se encontra
+
+var btnElement = document.getElementsByClassName('botao')[0];
+console.log (btnElement);
+btnElement.onclick = function(){
+    var text = inputElement.value;
+    alert (text);
+}
+
+//Criando novos elementos 
+
+var linkElement = document.createElement('a'); // Criando um elemento com tag a - um link 
+
+linkElement.href = 'https://github.com/MireleSCos';
+
+var textElement = document.createTextNode('Acessar github');
+
+linkElement.appendChild(textElement); // Adicionando um filho ao link - um texto
+
+var conteiner = document.getElementById('app');
+console.log (conteiner); 
+conteiner.appendChild(linkElement);
+
+//É possível remover elementos tbm com removeChild(linkElement)
+
+//Podemos editar o style
+//como os atributos - semelhante ao href
