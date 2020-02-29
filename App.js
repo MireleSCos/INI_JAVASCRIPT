@@ -129,3 +129,66 @@ conteiner.appendChild(linkElement);
 
 //Podemos editar o style
 //como os atributos - semelhante ao href
+
+// Adicionando todos 
+
+var listElement = document.querySelector('#todo ul');
+var inputElement2 = document.querySelector('#todo input');
+var buttonElement = document.querySelector('#todo button');
+console.log(listElement);
+
+var todos = JSON.parse(localStorage.getItem('list_todo')) || [];
+
+function renderTodos(){
+
+    listElement.innerHTML = '';
+
+    for (todo of todos){
+        console.log(todo);
+        var todoElement = document.createElement('li');
+        var todoText = document.createTextNode(todo); 
+
+        var linkElement2 = document.createElement('a');
+        linkElement2.setAttribute('href','#');
+        var linkText = document.createTextNode('Excluir');
+
+        var pos = todos.indexOf(todo);
+        linkElement2.setAttribute('onclick','deleteTodo('+pos+')');
+
+        linkElement2.appendChild(linkText);
+    
+        todoElement.appendChild(todoText);
+        todoElement.appendChild(linkElement2);
+        listElement.appendChild(todoElement);
+
+
+    }
+}
+renderTodos();
+
+function addTodo(){
+
+    todos.push(inputElement2.value);
+    inputElement2.value = "";
+    renderTodos();
+    saveStorage();
+}
+
+buttonElement.onclick = addTodo;
+
+function deleteTodo(pos){
+
+    todos.splice(pos,1);
+
+    renderTodos();
+    saveStorage();
+}
+
+//Usando o armazenamento local STORAGE 
+//Não relacionais, apenas chave e valor 
+//Como todos é um vetor e o storage só amerzena chave e valor, é necessário a conversão para esse formato
+//Por esse motivo usa-se o JSON (estrutura de objetos em strigs)
+
+function saveStorage(){
+    localStorage.setItem('list_todo', JSON.stringify(todos));
+}
