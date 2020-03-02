@@ -192,3 +192,59 @@ function deleteTodo(pos){
 function saveStorage(){
     localStorage.setItem('list_todo', JSON.stringify(todos));
 }
+
+//Fazer requisições ao servidor sem atualizar a página 
+
+/*var xhr = new XMLHttpRequest(); //Variavel de requisição
+
+xhr.open('GET','https://api.github.com/users/diego3g');//abrindo requisição
+xhr.send(null); // Nada para enviar 
+
+xhr.onreadystatechange = function(){
+    if(xhr.readyState === 4){
+        console.log(JSON.parse(xhr.responseText));
+    }
+} */
+
+//Utilizando biblioteca para o ajax 
+/*Promises - promessas - São códigos que não interfere no fluxo do código,
+ são funções que devolvem valores de sucesso ou erro só depois de um tempo, não 
+ precisa se procupar quando elas vão retornar 
+*/ 
+
+/*var minhaPromise = function(){
+    return new Promise (function(resolver,reject){
+        var xhr = new XMLHttpRequest(); //Variavel de requisição
+
+        xhr.open('GET','https://api.github.com/users/diego3g');//abrindo requisição
+        xhr.send(null); // Nada para enviar 
+
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                if (xhr.status === 200){
+                    resolver(JSON.parse(xhr.responseText));
+                }else{
+                    reject('Erro na requisição');
+                }
+            }
+        } 
+    });
+}
+minhaPromise()
+    .then(function(response){
+        console.log(response);
+    })//retornado pelo responser
+    .catch(function(error){
+        console.log(error);
+    })//retornado pelo reject
+
+*/
+//Utilizando o axios 
+
+axios.get('https://api.github.com/users/diego3g')
+    .then(function(response){
+        console.log(response);
+    })//retornado pelo responser
+    .catch(function(error){
+        console.log(error);
+    })//retornado pelo reject
