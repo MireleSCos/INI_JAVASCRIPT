@@ -248,3 +248,180 @@ axios.get('https://api.github.com/users/diego3g')
     .catch(function(error){
         console.log(error);
     })//retornado pelo reject
+
+//As funções call e apply nos deixam invocar métodos como 
+//se estivéssemos no contexto de um outro objeto:
+
+            var myself = { firstName: 'Matheus', lastName: 'Lima' };
+
+            function showFullName() {
+                console.log(this.firstName + " " + this.lastName);
+            }
+
+            showFullName.call(myself);
+            // Matheus Lima
+
+            showFullName.apply(myself);
+            // Matheus Lima
+
+//This - em OO, faz referência a instancia da classe corrente, mas em JS o valor de this é determinado 
+//pelo contexto de invocação da função e onde elas foram chamadas. 
+
+/* No escopo global (em um browser) o this se refere ao objeto window*/
+
+//Quando usado dentro de um método de um objeto, o this se refere ao próprio objeto:
+
+var object = {
+    func: function() {
+        return this;
+    }
+};
+document.write(object.func());  //[object Object]
+
+// E bem comum esquecermos a regra acima, principalmente no uso de loops:
+
+
+var object2 = {
+    name: 'Mirele',
+    friends: ['João', 'Ana' ],
+
+    loop: function() {
+
+        var self = this;
+
+        this.friends.forEach(function(friend) {
+            console.log(self.name + ' knows ' + friend); // Não pega o objeto2
+        });
+
+    }
+
+};
+
+object2.loop();
+
+/* Função na Prototype Chain
+Quando um método está na prototype chain de um objeto, o this desse método vai se 
+referir ao objeto que o está chamando, mesmo se o método não estiver definido nesse objeto: */
+
+var object2 = {
+    func: function () {
+        return this.name;
+    }
+};
+
+var anotherObject = Object.create(object2); // ?? criando um novo objeto 
+anotherObject.name = "Maris";
+
+document.write(anotherObject.func()); //Matheus
+
+// Map, Filter e Reduce
+
+/* Provavelmente já passou por alguma situação em que era necessário por
+ exemplo iterar sobre um array, ou então verificar se existe alguma propriedade 
+ nele ou mesmo simplesmente gerar um novo array com base no primeiro. Os métodos
+map, filter e reduce nos ajudam nessas situações */
+
+/* Map: Dado um array qualquer, como podemos fazer para transformá-lo, ou mapeá-lo, 
+em um outro array? */
+
+// Forma difícil sem o map
+        
+
+    var months1 = [
+        {shortName: 'JAN', fullName: 'January',  number: 1},
+        {shortName: 'FEB', fullName: 'February', number: 2},
+    ];
+
+    var shortNameMonths1 = [];
+
+    for (var i = 0; i < months1.length; i++) {
+        shortNameMonths1.push(months1[i].shortName); // Copiando o array months para shortName
+    }
+
+    console.log(shortNameMonths1); // ['JAN', 'FEB', ...]
+
+//Com o map 
+
+    var months = [
+        {shortName: 'JAN', fullName: 'January',  number: 1},
+        {shortName: 'FEB', fullName: 'February', number: 2},
+        {shortName: 'MAR', fullName: 'Março', number: 3},
+        {shortName: 'ABR', fullName: 'Abril', number: 4},
+        {shortName: 'MAI', fullName: 'Maio', number: 5},
+    ];
+
+    var shortNameMonths = [];
+
+    shortNameMonths = months.map(function(month) {
+        return month.shortName; // Fazendo a cópia do array months referenciado em month
+    });
+    
+    console.log(shortNameMonths);
+/*Filter : mapear um array com elementos filtrados. Ex: os primeiros 6 elementos*/
+
+    var shortNamesixMonths = months.filter(function(month) {
+        return month.number <= 2;
+    }); // Fez a cópia do objeto, porém só das dois primeiros indices 
+
+    console.log(shortNamesixMonths);
+
+/* como podemos fazer para gerar uma acumulação de valores, ou reduzi-lo, 
+em algum valor específico? 
+Com o reduce seria mais ou menos assim:*/
+
+    var monthsAcc = months.reduce(function(acc, month) {
+        return acc + '/' + month.shortName;
+    }, '');
+
+    console.log(monthsAcc); // /JAN/FEB/MAR/APR...
+
+    console.log(monthsAcc); // /JAN/FEB/MAR/APR...
+
+
+// 6 - Prototype
+//Herança em JS
+
+    
+    var Animal = {
+        walk: function() {
+            console.log("I'm walking...");
+        }
+    };
+
+    var Dog = Object.create(Animal);
+
+    Animal.walk(); // I'm walking...
+    Dog.walk(); // I'm walking... 
+    //Dog é um tipo de animal 
+    //Se quiser posso atribuir novos atributos e métodos
+    var Airplane = {
+        fly: function() {
+            console.log("I'm flying...");
+        }
+    };
+
+    //Airplane.walk(); // Uncaught TypeError: Airplane.walk is not a function(…)
+
+    //7 - Hoisting
+
+
+// com var, o valor do segundo console.log não é esperado
+    function varr(){
+        var n = 1;
+        if (true) {
+            var n = 2;
+            console.log(n); // 2
+        }
+        console.log(n); // 2 
+    }
+    
+    // com let, o valor do segundo console.log é esperado
+    function let() {
+        let n = 1;
+        if (true) {
+            let n = 2;
+            console.log(n); // 2
+        }
+        console.log(n);  // 1
+    }
+

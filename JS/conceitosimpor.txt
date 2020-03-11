@@ -1,0 +1,126 @@
+
+
+1 - Call x Apply
+
+    As funções call e apply nos deixam invocar métodos como 
+    se estivéssemos no contexto de um outro objeto:
+
+            var myself = { firstName: 'Matheus', lastName: 'Lima' };
+
+            function showFullName() {
+                console.log(this.firstName + " " + this.lastName);
+            }
+
+            showFullName.call(myself);
+            // Matheus Lima
+
+            showFullName.apply(myself);
+            // Matheus Lima
+
+            
+    O primeiro parâmetro tanto de call quanto de apply é o próprio 
+    contexto, ou seja: o valor de this será exatamente o que você 
+    passar como parâmetro
+
+    Então qual a diferença entre eles? O segundo parâmetro.
+
+    Enquanto apply aceita um array, call requer parâmetros divididos por vírgulas:  
+
+            var myself = { age: 26 };
+
+            function isOlderThan() {
+                for (var i = 0; i < arguments.length; i++) {
+                    console.log(this.age < arguments[i]);
+                }
+            }
+
+            isOlderThan.call(myself, 30, 40, 15);
+            // true true false
+
+            isOlderThan.apply(myself, [30, 40, 15]);
+            // true true false
+
+    Apply e call nos permitem pegar métodos emprestados
+
+
+2 - Closures
+
+    A combinação de uma função e a referência ao seu estado externo é uma closure.
+
+            (function() {
+                var a = 1;
+            })();
+
+    Uma outra abordagem para a criação de uma closure, é basicamente criar uma 
+    função dentro de outra.
+
+            function init() {
+                var name = 'Matheus';
+                function hello() {
+                    console.log('Olá: ' + name); // Tem acesso as variáveis externas definidas em init()
+                }
+                hello();
+            }
+
+            init();
+            // Olá: Matheus
+
+            hello();
+            // Uncaught ReferenceError: hello is not defined(…)
+
+    A função de dentro (hello) tem acesso ao escopo externo dela (init). Porém,
+    ao sairmos de init, perdemos a visibilidade da função hello.
+
+
+3 - this
+
+4 - bind 
+
+    O bind é muito semelhante ao call e apply: serve para passarmos um contexto 
+    para uma função, que não é dela, e podermos executá-la. A diferença é que call
+    e apply invocam a função imediatamente:
+
+
+        apply: 
+
+            var person = {  
+            name: "Matheus",
+            hello: function(thing) {
+                console.log(this.name + " disse Olá " + thing);
+            }
+            }
+
+            person.hello.call(person, "Mundo"); // Matheus disse Olá Mundo
+        
+        bind 
+
+            var person = {  
+            name: "Matheus",
+            hello: function(thing) {
+                console.log(this.name + " disse Olá " + thing);
+            }
+            }
+
+            var hello = person.hello.bind(person);
+            hello("Mundo"); // Matheus disse Olá Mundo
+
+6 - Prototype
+
+A herança em JavaScript é feita através dos prototypes. Ela funciona de
+uma maneira um pouco diferente da herança clássica, o que pode gerar um 
+pouco de confusão mesmo para os desenvolvedores mais experientes em JavaScript.
+
+Podemos pensar em herença em JS como agregadores de propriedades dinâmicas. E 
+quando um objeto tenta acessar qualquer propriedade sua e não a encontrar, ela
+procurará no seu prototype. E se não estiver lá, no prototype de seu prototype 
+até que a propriedade seja encontrada ou então essa corrente, chamada de Prototype 
+Chain, se acabe:
+
+
+7 - Hoisting 
+
+A tradução de hoist é içar, levantar ou suspender. E é isso que acontece em JavaScript
+quando declaramos uma variável: ela é levantada até o topo do escopo. Isso acontece quando
+declaramos com var;
+
+
