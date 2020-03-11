@@ -1,3 +1,4 @@
 {
-    "presets": ["@babel/preset-env"] //Vai entender o ambiente de trabalho (browser) e conventer respectivamente
+    "presets": ["@babel/preset-env"], //Vai entender o ambiente de trabalho (browser) e conventer respectivamente
+    "plugins": ["@babel/plugin-proposal-object-rest-spread"],
 }

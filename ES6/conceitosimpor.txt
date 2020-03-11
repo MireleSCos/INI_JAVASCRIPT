@@ -1,0 +1,114 @@
+1 - Declaração de variáveis
+
+    Deveremos saber um pouco do hoisting
+
+    VAR E LET 
+    
+    A diferença principal entre o var e o 
+    let é que enquanto o primeiro tem escopo 
+    de função, o segundo possui escopo de bloco:
+
+
+            // escopo de função com var
+            function doSomething() {
+            var a = 1;
+            if (true) {
+                var b = 2; // b é declarado dentro do if mas é visível fora
+            }
+            var c = a + b; // 3
+            }
+
+            //escopo de bloco com let
+            function doSomethingElse() {
+            let a = 1
+            if (true) {
+                let b = 2 // b é declarado dentro do if e não é visível fora
+            }
+            let c = a + b // Uncaught ReferenceError: b is not defined
+            }
+
+            Um outro exemplo de coisas inesperadas que acontecem quando usamos o var: 
+
+            for (var i = 0; i < 5; i++) { /* do something */ }
+            for (let j = 0; j < 5; j++) { /* do something else */}
+
+            console.log(i); // 5
+            console.log(j); // Uncaught ReferenceError: j is not defined
+
+    o LET resolver a maioria dos problemas com o hoisting
+
+    LET x CONST 
+    
+    const funciona de forma semelhante. 
+    A única diferença é que as variáveis 
+    criadas não podem ser reatribuídas:
+
+            
+            let a = 1
+            a = 2
+
+            const b = 1
+            b = 2 // Uncaught SyntaxError "b" is read-only
+
+    mas as propriedades de um objeto, por exemplo, podem ser alteradas:
+
+            const object = {
+            property: 1
+            }
+
+            object.property = 2
+            console.log(object.property) // 2
+
+
+2 - Parâmetro de funções
+    Temos o default parameters:
+
+        Os parâmetros de funções tem undefined como valor default. 
+                var multiply = function(x, y) {
+                y = y | 1;
+                return x * y;
+                };
+
+                multiply(3, 2); // 6
+                multiply(3); // 3
+        O ES6 introduziu uma nova forma, bem mais simples, de se fazer 
+        isso. Basta adicionar o valor default na definição do parâmetro desejado:
+
+                const multiply = (x, y = 1) => {
+                return x * y
+                }
+
+                ou 
+
+                const multiply = (x, y = 1) => x * y
+
+                multiply(3, 2) // 6
+                multiply(3) // 3
+
+    tem o rest parameters: 
+
+     O javaScript podemos utilizar o objeto arguments para pegar todos os parâmetros de uma função:
+
+
+                function sum(...numbers) {
+                let result = 0
+                numbers.forEach((number) => {
+                    result += number
+                })
+                return result
+                }
+
+                sum(1, 2, 3, 4, 5) // 15
+
+                ou usando o arrow function
+
+                const sum = (...numbers) => 
+                numbers.reduce((acc, current) => acc + current, 0)
+
+                sum(1, 2, 3, 4, 5) // 15
+
+
+
+
+
+    
