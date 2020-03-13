@@ -1,0 +1,6 @@
+
+div.map{
+    flex-direction: column;
+    display: flex;
+    padding: 10px;
+}

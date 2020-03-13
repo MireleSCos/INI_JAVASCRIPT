@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './styles.css';
 import api from '../../services/api';
 
 export default class Main extends Component {
@@ -30,13 +31,15 @@ export default class Main extends Component {
     };
     render(){
         return (            
-            <div>        
+            <div >        
                 <h6>Quandidade de produtos em estoque : {this.state.products.length}</h6>
-
-                <div className="product-list">
+                
+                <div className = 'map'>
                     {this.state.products.map(product => (
-                        <h2 key = {product._id}>{product.title}</h2>
-                    ))};
+                        <div className= 'map'> 
+                            <h5 key = {product._id}>{product.title}</h5>
+                        </div>
+                    ))}
                 </div>
 
             </div>
