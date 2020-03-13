@@ -1,0 +1,35 @@
+
+React entra no front, mas ele manipula a DOM 
+ SPAs - Single Page Applicatio, utilizado por PHP, Ruby ..
+ em que o Dom é construido com o Back.
+ No react, back é separado e retorna objetos JSON e o front
+ consome esses dados.
+
+Instalar : npm install -g create-react-app - no sudo
+ -- Criar o projeto create-react-app projeto -- Já vem o transpilador
+
+    Estrutura de pastas do projeto criado:
+        nome_modules: depedencias do projeto,
+        public: arquivos acessados diretamente pelo usuário (index, favico, manifest.icon)
+        src: todo o codigo da aplicação
+        
+        Dependencias= 
+
+            "react-dom": "^16.13.0",//Renderia para a web
+            "react-scripts": "3.4.0" //Faz a transpilação do código
+        
+        Scripts = 
+
+            "start": "react-scripts start", //Comando para rodar 
+
+    Conceitos: 
+
+        Componentização:
+            Componente é um conjunto de partes visuais, funcional e style,
+            uma div por exempo é um componente. E se define um componente 
+            como uma classe que extend component e possue um método render
+            que retorna um componente JSX. OBS: classname = class em css
+
+
+        Principal arquivo = primeiro arquivo aberto index.js
+
