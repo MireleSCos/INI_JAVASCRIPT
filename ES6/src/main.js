@@ -1,3 +1,7 @@
+//import {div as divisao} from './funcoes'; // renomeando 
+//import funcoes from './funcoes';
+import * as funcoes from './funcoes';
+import axios from 'axios';
 class List {
 
     constructor(){
@@ -190,3 +194,58 @@ console.log (` Meu nome é ${n} e tenho ${i} anos `); // Muitas concatenações
     // não há necessidade de fazer a atribuição
 
 
+//console.log(div(9,3));
+
+//funcoes('mirele'); // Não precisa ter o mesmo nome da função defal
+
+console.log(funcoes.multi(1,2));
+console.log(funcoes.div(1,2));
+
+//Async/await 
+const minhaPromise = function(){
+    return new Promise (function(resolver,reject){
+        var xhr = new XMLHttpRequest(); //Variavel de requisição
+
+        xhr.open('GET','https://api.github.com/users/diego3g');//abrindo requisição
+        xhr.send(null); // Nada para enviar 
+
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                if (xhr.status === 200){
+                    resolver(JSON.parse(xhr.responseText));
+                }else{
+                    reject('Erro na requisição');
+                }
+            }
+        } 
+    });
+}
+async function execultarPromise(){
+    const response = await minhaPromise();//await substitui o then e o catch
+    //O await faz com que a a proxima linha seja executada somente quando a primeira for 
+    const response2 = await minhaPromise();//await substitui o then e o catch
+  
+    console.log(response);
+    console.log(response2);
+}
+
+execultarPromise();
+
+console.log(funcoes.multi(1,2));
+
+//Consumindo api com axios 
+
+class ApiGit{
+    static async getUserInfo(username){
+       try {
+            const responser = await axios.get(`https://api.github.com/users/${username}`);
+            console.log(responser);
+       }
+       catch (err){
+            console.log("Usuário não encontrado");
+       }
+    }
+
+}
+
+ApiGit.getUserInfo('MireleSCs');

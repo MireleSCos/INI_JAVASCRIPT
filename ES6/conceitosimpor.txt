@@ -107,8 +107,39 @@
 
                 sum(1, 2, 3, 4, 5) // 15
 
+3 - Webpack
 
+    Serrviço de gerenciar varios aquivos js, imagens, json
+    e todo o codico vai passar pelo babel
 
+    confuguração : arn add webpack webpack-cli -D
 
+Antes sem usar o webpack o script dev era 
+     // antes sem o webpack utilizavamos só um scrip com: babel ./main.js -o ./bundle.js -w
+    com : webpack --mode=development -w
+
+4 - Importa e Exportar funçoes entre arquivos 
+    
+    Toda função que irá ser exportada deve ter antes do nome 
+    function a palavra export
+
+    Cada arquivo pode ter uma exportação default
+
+5 - Organização das pastas 
+
+    src = Todos os arquivos JS // Monitorados pelo webpack
+    public  = Index //Não são monitorados pelo webpack
+
+    apos instalar o webpack-dev-serve vamos trocar o scrit para:
+            webpack-dev-server --mode=development
+    o webpack serve já "imbute o bundle"
+
+    mas caso seja para produção executa o segundo script build
+
+    o serve tbm monitora as modificações no app
+
+6 Promisses - códigos assincronos -- Async/await 
+    ES8 - instalar yarn add @babel/plugin-transform-async-to-generator -D
+     e a @babel/polyfill algumas depedencias para o babel
 
     
