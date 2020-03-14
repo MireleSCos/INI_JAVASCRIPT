@@ -30,16 +30,20 @@ export default class Main extends Component {
         this.setState({products : response.data.docs}); //Atribuindo os valores ao estado
     };
     render(){
+        const {products} = this.state;
         return (            
             <div >        
                 <h6>Quandidade de produtos em estoque : {this.state.products.length}</h6>
                 
-                <div className = 'map'>
-                    {this.state.products.map(product => (
-                        <div className= 'map'> 
-                            <h5 key = {product._id}>{product.title}</h5>
-                        </div>
+                <div className = 'product-list'>
+                    {products.map(product => (
+                        <article className= 'product-list-un' key={product._id}>
+                            <strong className='text'>{product.title}</strong>
+                            <p >{product.description}</p>
+                            <a  href="">Acessar</a>
+                        </article>
                     ))}
+                    
                 </div>
 
             </div>
