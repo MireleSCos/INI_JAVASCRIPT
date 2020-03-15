@@ -43,3 +43,30 @@
 .text{
     color: #243336;
 }
+.product-list .actions{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+.product-list .actions button{
+    height: 30px;
+    width: 90px;
+    border-radius: 5px;
+    border: 0;
+    background-color: #4507A1;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.product-list .actions button:hover{
+    opacity: 0.7;
+}
+.product-list .actions button[disabled]{
+    opacity: 0.5;
+    cursor:default;
+}
+
+.product-list .actions button[disabled]:hover{
+    opacity: 0.5;
+}
