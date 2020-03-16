@@ -1,0 +1,39 @@
+.login{
+    max-width: 400px;
+    margin: 50px auto 60px;
+    height: 600px;
+    background: #FFF;
+    border: 1px solid #DDD;
+    color:  #999;
+    border-radius: 5px;
+    box-shadow: 5px 10px 10px rgba(0,0,0,0.5);
+
+}
+.field-input {
+    margin: 300px auto 0px;
+}
+.login form label {
+    display: grid;
+    height: 30px;
+    width: 350px;
+    margin: 30px auto 0;
+}
+.login form label input {
+    height: 35px;
+    width: 350px;
+    margin: 0px auto 0;
+}
+.login form button{
+    display: grid;
+    height: 40px;
+    width: 350px;
+    margin: 40px auto 0;
+    justify-items: center;
+    text-align: center;
+    background: rgb(106, 20, 219);
+    color:white;
+    padding: 10px;
+    border: 0;
+    border-radius: 5px;
+
+}
