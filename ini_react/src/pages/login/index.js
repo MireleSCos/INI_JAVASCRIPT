@@ -1,6 +1,12 @@
 import React,{Component} from "react";
-import { Redirect } from 'react-router'
+import { Redirect } from "react-router";
+import Img from "react-image";
+
+
 import './styles.css';
+
+import logo from '../../assets/logo.png';
+
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +29,7 @@ export default class Login extends Component {
         this.setState({
             redirect: true
         })
+        console.log(logo);
     }
     
     render() {
@@ -31,18 +38,19 @@ export default class Login extends Component {
         }
         return (
             <div className="login">
-                
+                <Img className="img-logo" src={logo} alt="logo"/>
                 <form onSubmit={this.handleSubmit}>
                     <div className = "field-input">
                         <label>
-                            Email
+                        Email
                             <input type="text" onChange={this.handleChange} />
                         </label>
                         <label>
-                            Password
+                        Password
                             <input type="text" onChange={this.handleChange} />
                         </label>
                         <button type="submit">Enviar</button>
+                        
                     </div>
                 </form>
             </div>
