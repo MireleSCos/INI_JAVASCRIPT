@@ -1,0 +1,22 @@
+Nodejs : O que é ?
+
+    Permite que use js para servido no lado bk,
+    é usa a ENGINE do brawser no lado do BK, 
+    acessado bancos de dados.
+
+    E o conceito de api rest : 
+        full NDC - parte visual com o backend
+        Api rest - separa o BK e FE, oferece flexibilidade 
+            trata os dados melhor, uma unica api para varias 
+            plataformas.
+            v 
+
+API REST CRIADA COM Nodejs
+
+    instalar o express:é um micro framework que 
+        gerencia as rotas que o usuário vai poder 
+        acessar a APi
+    Configurando o servidor: instalando o mongo 
+        dockercon - soker - que inplementa uma máquina virtual por trás 
+        //Projeto em node vai criar toda a base de dados
+        //docker start mongodb - sempre que for execultar o bd
