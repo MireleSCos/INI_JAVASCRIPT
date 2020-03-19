@@ -1,21 +1,24 @@
-const express = require ('express');
-const mongoose = require('mongoose');
+const express = require ("express");
+const cors = require('cors');
+const mongoose = require("mongoose");
+const requireDir = require("require-dir");
 
-//Iniciando a Api
-const api = express();
+//Iniciando a App
+const app = express();
+//permitindo o envio de urls com json
+app.use(express.json());
+//permitindo que outros sistemas acessem a api
+app.use(cors());
 
 //Iniciando o Banco de dados 
-mongoose.connect('mongodb://localhost:27017/nodeapi', {useUnifiedTopology: true,useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:27017/nodeapi", {useUnifiedTopology: true,useNewUrlParser: true});
+
+//Dando o include e execultando
+requireDir("./src/models"); 
 
 
-//Primeira rotas 
-api.get('/',(req,res)=>{
-    res.send('Hell Roxt');
-}); //Definindo uma rota, ou seja, toda vez que o usuário acessar a rota definida, tal coisa vai ser a resposta
-                //Primeiro parêmetro é o nome da rota e o segundo é 
-                //uma função que tem dois parametros req - define a requisição, contem as informações de quem está fazendo a requisição 
-                //e res que contem a resposta da requisição 
+//Rotas
+app.use("/api",require("./src/routes")) //Recebe todas as requisições
 
-
-api.listen(3000); // Definindo a porta de acesso, a porta que a plicação está ouvindo as requisições
+app.listen(3000); // Definindo a porta de acesso, a porta que a plicação está ouvindo as requisições
 

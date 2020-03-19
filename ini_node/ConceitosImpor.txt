@@ -20,3 +20,6 @@ API REST CRIADA COM Nodejs
         dockercon - soker - que inplementa uma máquina virtual por trás 
         //Projeto em node vai criar toda a base de dados
         //docker start mongodb - sempre que for execultar o bd
+        //mongoose - trata a conversão de js para o bd
+        //mongoose-paginate - gerenciar a listagem por paginas 
+        //CORS - permite que outros sistemas acessem a api 
