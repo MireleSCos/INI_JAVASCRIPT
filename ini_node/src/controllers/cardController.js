@@ -8,7 +8,7 @@ const card = mongoose.model('card');
 module.exports = {
     async index(req,res){
         const {page = 1} = req.query;
-        const cards = await card.paginate({},{page, limit: 5});
+        const cards = await card.paginate({},{page, limit:2});
         return res.json(cards);
     },
     async show(req,res){
