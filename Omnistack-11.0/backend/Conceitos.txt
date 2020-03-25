@@ -1,0 +1,2 @@
+Framework importante para o gerenciamento de rotas : npm install express
+o express quem instancia a app e possui outros métodos, como definir a porta que será usada 
