@@ -1,2 +1,92 @@
-Framework importante para o gerenciamento de rotas : npm install express
-o express quem instancia a app e possui outros métodos, como definir a porta que será usada 
+Pacote que gerencia a atualização do código para o servidor 
+automaricamente,  só para o desenvolvimento:
+    -npm install nodemon -D
+    -criar script chamado start com a seguinte string "nodemon index.js"
+Bancos de dados : 
+    -SQL(formato utilizado para se comunicar com o banco) :
+        bancos-MySQL|SQLITE|PostgreSQL|Oracle|Microsoft SQL Serve
+        Uma estrutura mais organizada 
+    -NoSQL : bancos - MongoDB|CouchDB , etc
+Escolher o banco : 
+    -Usar o SQLite que já tem um pacote para o node 
+Configurar o banco :
+    - Drive : instala r o drive diretamente do banco de dados, o pacote oficial
+    do bd para node, acessar o banco com linguagem SQL (select * from user)
+    -Query Builder (mais famoso o KNEX.JS): acessar o banco com linguagem js table('users').select('*').where()
+Instalando o Query Buider KNEX.js e o drive do bd:
+    -npm install knex
+    -npm install sqlite3
+Coneção com o banco:
+    -npx knex init
+    (cria um arquivo knexfile.js que defini os dados de coneção)
+Organizar diretórios:
+    - criar SRC que armazenará os aquivos implementados pelo desenvolvedor
+    - index : inicia a aplicação 
+    - routes : defini as rotas de comunicação 
+    - database/db.sqlite : arquivo que vai definir o banco 
+    - Atualizar em connection filename o caminho de db.sqlite
+Framework importante para o gerenciamento de rotas : 
+    -npm install express
+
+    O express quem instancia a app e possui outros 
+    métodos, como definir rotas que serão usadas
+    para acessar a API 
+    - Explicando a criação de rotas:
+
+        .Método define como a rota vai ser acessível
+        a parti de um métodp HTTP (GET - Buscar informações
+        POST -Criar informações | PUT - Auterar informação
+        DELETE - Deletar informação ) OBS : o navegador só 
+        abre solicitações get, para testas a requisição de 
+        outras rotas é necessário o insomnia  
+    
+        .Parametros dos métodos http (nome da rota, 
+        chamado de recurso, esse que vai ser acessado 
+        que está relacionado a uma tabela no banco) (
+        função que irá ser execultada apos a requisição)
+
+        .Tipos de parametros: 
+            QUERY - são parametrosnomeados e enviados
+            dentro da url após o simbolo de "?" e geralmente servem para
+            filtro e paginação, pode haver mais de um parametro
+            adicionando o & (\users?name=Diego&idade=27), 
+            não é preciso expecificar na rota, acessa da seguinte 
+            forma dentro da função que será chamada na expecificação
+            da rota pelo parametro request. ( const params = request.query -
+            objeto com o name e valor do query)
+
+
+            ROUTE - parâmetro utilizado para indentificar recursos
+            (/users/:id) expecifica na rota e na requisição (/users/1)
+            o acesso é atraves do request da função definida na rota
+            (const params = request.params)
+
+            REQUEST BODY - corpo da requisição para criar ou alterar recusos
+            não é necessário expecifica na rota e o valor do body é acessado
+            com (const params = request.body)
+
+Definição de entidades no banco:
+    - tudo o que representa o que vai ser salvo no banco 
+        (casos, ong) - uma ong vai ter varios casos
+    - funcionalidade
+        (login de ong |
+        logout de ong | 
+        cadastro de ong | 
+        cadastro de caso | 
+        deletar caso |
+        Listar casos expecificos de cada ong
+        Lista de todos os casos
+        Entrar em contato com a ong)  
+
+Criar tabelas: 
+    -KNEX - migrations : Arquivo que configura a criação de tabelas e mantem historicos de modificações (versoes do banco de dados)
+        Criar no diretorio database o sub chamado migrations e definir esse diretório no arquivo knexfile
+        - npx knex migrate:make create_ongs
+        na nova migrate criada, dentro do método up:
+        via ser escrito o que dever ser levado para o bd  
+        execultar o metodo up - criar tb
+        - npx knex migrate:latest
+Criar arquivo de connection
+Definir as funções nas rotas 
+Criar pasta controllers para armazenas as funções chamadas pelas rotas;
+Para pegar dados da autenticação do use podemos usar os parametro do headers.authorization que vai no request
