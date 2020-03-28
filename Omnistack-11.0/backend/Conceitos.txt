@@ -90,3 +90,9 @@ Criar arquivo de connection
 Definir as funções nas rotas 
 Criar pasta controllers para armazenas as funções chamadas pelas rotas;
 Para pegar dados da autenticação do use podemos usar os parametro do headers.authorization que vai no request
+Crontrole profile armazena as funções expecificas para os perfils
+Controle para login é chamado session
+Mandar na requisição o total de incidents vai no headers do responser
+
+Adicionar o modulo de segurança controllers
+    -npm install cors  - define quem pode acessar as rotas 

@@ -1,6 +1,8 @@
 const express = require ('express');
 const OngController = require('./controllers/OngControllers');
 const IncidentController = require('./controllers/IncidentControllers');
+const ProfileController = require('./controllers/ProfileControllers');
+const SessionController = require('./controllers/SessionControllers');
 
 const routes = express.Router();
 
@@ -12,11 +14,17 @@ função com dois parâmetros - req e res - o req armazena os dados
 do cliente que acessou a rota e o responde armazena os dados da
  resposta da requisição. No retorno response armazenará um código 
  referente a um objeto em js */
+
+routes.post('/sessions',SessionController.create)
+
 routes.get('/ongs', OngController.index);
 routes.post('/ongs',OngController.create);
+
+routes.get('/profile',ProfileController.index);
 
 routes.post('/incidents',IncidentController.create);
 routes.get('/incidents',IncidentController.index);
 routes.delete('/incidents/:id',IncidentController.delete);
+
 
 module.exports = routes; // Expostar variável para o index acessar 
